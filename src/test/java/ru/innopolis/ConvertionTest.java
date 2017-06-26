@@ -1,6 +1,7 @@
 package ru.innopolis;
 
 import org.apache.log4j.Logger;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -169,6 +170,14 @@ public class ConvertionTest {
         } catch (InterruptedException e) {
             LOGGER.error("Ошибка потока",e);
         }
+    }
+
+    /**
+     * Метод, выполняющийся после теста. Закрывает объект WebDriver
+     */
+    @After
+    public void afterTest(){
+        driver.quit();
     }
 
 }

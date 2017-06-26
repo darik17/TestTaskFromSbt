@@ -14,7 +14,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,16 +44,17 @@ public class ConvertionTest {
 
     /**
      * Метод считывает данные с файла и возвращает в виде параметров для каждого набора
+     *
      * @return val, currFrom, currIn
      */
     @Parameterized.Parameters
-    public static Collection<String[]> readDataFromFile(){
+    public static Collection<String[]> readDataFromFile() {
         List<String[]> list = new ArrayList<>();
         String temStr;
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileParam))){
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileParam))) {
 
-            while ((temStr = reader.readLine()) != null){
+            while ((temStr = reader.readLine()) != null) {
                 String[] tempMas = temStr.split(",");
                 list.add(tempMas);
             }
@@ -70,8 +70,8 @@ public class ConvertionTest {
      * на сайт для  тестирования.
      */
     @Before
-    public void seleniumSet(){
-        System.setProperty("webdriver.chrome.driver","src\\main\\resources\\chromedriver.exe");
+    public void seleniumSet() {
+        System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -168,15 +168,15 @@ public class ConvertionTest {
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
-            LOGGER.error("Ошибка потока",e);
+            LOGGER.error("Ошибка потока", e);
         }
     }
 
     /**
-     * Метод, выполняющийся после теста. Закрывает объект WebDriver
+     * Метод, выполняющийся после теста. Закрывает браузер.
      */
     @After
-    public void afterTest(){
+    public void afterTest() {
         driver.quit();
     }
 

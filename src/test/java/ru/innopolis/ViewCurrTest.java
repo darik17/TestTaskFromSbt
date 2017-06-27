@@ -1,6 +1,7 @@
 package ru.innopolis;
 
 import org.apache.log4j.Logger;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -160,4 +161,13 @@ public class ViewCurrTest {
         Assert.assertTrue(textGrIn.equals(currName.get(currIn)));
 
     }
+
+    /**
+     * Метод, выполняющийся после теста. Закрывает браузер.
+     */
+    @After
+    public void afterTest() {
+        driver.quit();
+    }
+
 }

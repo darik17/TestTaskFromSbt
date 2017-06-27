@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import ru.yandex.qatools.allure.annotations.Title;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -26,6 +27,7 @@ import java.util.concurrent.TimeUnit;
  * На сайте вносится проверяемая сумма, выбирается валюта с какой будем конвертировать и валюта
  * куда будем конвертировать. Запускается конвертация и проверяется наличие результата.
  */
+@Title("Тест ковертора")
 @RunWith(value = Parameterized.class)
 public class ConvertionTest {
 
@@ -81,6 +83,7 @@ public class ConvertionTest {
     /**
      * Тестирование конвертора на сайте, параметры берутся из файла
      */
+    @Title("Ввод суммы и валют")
     @Test
     public void convertTest() {
         //Очистка поля ввода и ввод суммы

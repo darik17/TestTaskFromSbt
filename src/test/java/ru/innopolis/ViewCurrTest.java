@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import ru.yandex.qatools.allure.annotations.Title;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -22,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by User on 27.06.2017.
  */
-
+@Title("Тест графиков")
 @RunWith(value = Parameterized.class)
 public class ViewCurrTest {
 
@@ -31,7 +32,7 @@ public class ViewCurrTest {
     private static String fileParam = "src\\main\\resources\\viewcurrtest.csv";
     private String currFrom;
     private String currIn;
-    private static Map<String, String> currName = new HashMap<>();
+    private static Map<String, String> currName;
 
     public ViewCurrTest(String currFrom, String currIn) {
         this.currFrom = currFrom;
@@ -39,6 +40,7 @@ public class ViewCurrTest {
     }
 
     static {
+        currName =  new HashMap<>();
        currName.put("CHF","Швейцарский франк");
        currName.put("EUR","Евро");
        currName.put("GBP","Фунт стерлингов Соединенного Королевства");
@@ -80,6 +82,7 @@ public class ViewCurrTest {
     /**
      * Тестирование появление графика изменения валюты к рублю в зависимости от выбранной валюты в полях "из" и "в"
      */
+    @Title("Ввод валют, сравнение графиков")
     @Test
     public void viewTest() {
 
@@ -152,13 +155,13 @@ public class ViewCurrTest {
         //Поиск  название валюты в элементе график валюты, выбранной в поле "из" и сравнение с названием получившегося графика
         WebElement webGrafFrom = driver.findElement(By.cssSelector(".rates-details-graphs > div:nth-child(1) > h2:nth-child(4)"));
         String textGrFrom = webGrafFrom.getText();
-        Assert.assertTrue(textGrFrom.equals(currName.get(currFrom)));
+        Assert.assertEquals(textGrFrom,currName.get(currFrom));
 
 
         //Поиск  название валюты в элементе график валюты, выбранной в поле "в" и сравнение с названием получившегося графика
         WebElement webGrafIn = driver.findElement(By.cssSelector(".rates-details-graphs > div:nth-child(2) > h2:nth-child(4)"));
-        String textGrIn = webGrafFrom.getText();
-        Assert.assertTrue(textGrIn.equals(currName.get(currIn)));
+        String textGrIn = webGrafIn.getText();
+        Assert.assertEquals(textGrIn,currName.get(currIn));
 
     }
 

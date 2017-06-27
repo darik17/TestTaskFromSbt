@@ -40,12 +40,12 @@ public class ViewCurrTest {
     }
 
     static {
-        currName =  new HashMap<>();
-       currName.put("CHF","Швейцарский франк");
-       currName.put("EUR","Евро");
-       currName.put("GBP","Фунт стерлингов Соединенного Королевства");
-       currName.put("JPY","Японская иена");
-       currName.put("USD","Доллар США");
+        currName = new HashMap<>();
+        currName.put("CHF", "Швейцарский франк");
+        currName.put("EUR", "Евро");
+        currName.put("GBP", "Фунт стерлингов Соединенного Королевства");
+        currName.put("JPY", "Японская иена");
+        currName.put("USD", "Доллар США");
     }
 
     @Parameterized.Parameters
@@ -155,13 +155,13 @@ public class ViewCurrTest {
         //Поиск  название валюты в элементе график валюты, выбранной в поле "из" и сравнение с названием получившегося графика
         WebElement webGrafFrom = driver.findElement(By.cssSelector(".rates-details-graphs > div:nth-child(1) > h2:nth-child(4)"));
         String textGrFrom = webGrafFrom.getText();
-        Assert.assertEquals(textGrFrom,currName.get(currFrom));
+        Assert.assertEquals(textGrFrom, currName.get(currFrom));
 
 
         //Поиск  название валюты в элементе график валюты, выбранной в поле "в" и сравнение с названием получившегося графика
         WebElement webGrafIn = driver.findElement(By.cssSelector(".rates-details-graphs > div:nth-child(2) > h2:nth-child(4)"));
         String textGrIn = webGrafIn.getText();
-        Assert.assertEquals(textGrIn,currName.get(currIn));
+        Assert.assertEquals(textGrIn, currName.get(currIn));
 
     }
 

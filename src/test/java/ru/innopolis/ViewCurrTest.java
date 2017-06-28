@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Title;
 
 import java.io.BufferedReader;
@@ -21,9 +22,11 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by User on 27.06.2017.
+ * Класс - тест считывает параметры из файла, валюты, подставляет их в поля валют,
+ * проверяет появление/изменение графиков.
  */
 @Title("Тест графиков")
+@Description("Класс - тест считывает параметры из файла, валюты, подставляет их в поля валют, проверяет появление/изменение графиков.")
 @RunWith(value = Parameterized.class)
 public class ViewCurrTest {
 

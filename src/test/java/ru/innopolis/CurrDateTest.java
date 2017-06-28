@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Title;
 
 import java.io.BufferedReader;
@@ -27,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Класс - тест считывает параметры из файла и нажимает кнопку распечать, проверяя появление окна распечатывания.
  */
-@Title("Тест измения графикы валюты по датам")
+@Title("Тест распечатывания графиков по валютам")
 @RunWith(value = Parameterized.class)
 public class CurrDateTest {
 
@@ -75,6 +76,11 @@ public class CurrDateTest {
         driver.navigate().to("https://www.sberbank.ru/ru/quotes/converter");
     }
 
+    /**
+     * Фактически из файла берет только валюту, подставляя в поле "в" и проверяет появление окна печати
+     */
+    @Title("Тест печати по валюте")
+    @Description("Класс - тест проверяет печать по заданной валюте.")
     @Test
     public void changeDate(){
 

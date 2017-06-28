@@ -1,6 +1,7 @@
 package ru.innopolis;
 
 import org.apache.log4j.Logger;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +25,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by User on 27.06.2017.
+ * Класс - тест считывает параметры из файла и нажимает кнопку распечать, проверяя появление окна распечатывания.
  */
 @Title("Тест измения графикы валюты по датам")
 @RunWith(value = Parameterized.class)
@@ -141,13 +142,14 @@ public class CurrDateTest {
         WebElement webElementPrint = driver.findElement(By.cssSelector(".details-item.print-visible"));
         Assert.assertTrue(webElementPrint.isEnabled());
 
-
-
-
-
-
-
     }
 
+    /**
+     * Метод, выполняющийся после теста. Закрывает браузер.
+     */
+    @After
+    public void afterTest() {
+        driver.quit();
+    }
 
 }

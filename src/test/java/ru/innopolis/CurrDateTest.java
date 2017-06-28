@@ -1,6 +1,7 @@
 package ru.innopolis;
 
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +20,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -35,12 +35,12 @@ public class CurrDateTest {
     private static String fileParam = "src\\main\\resources\\currdatetest.csv";
     private String currIn;
     private String withDate;
-    private String atDate;
+    private String atDay;
 
-    public CurrDateTest(String currIn, String withDate, String atDate) {
+    public CurrDateTest(String currIn, String withDay, String atDay) {
         this.currIn = currIn;
-        this.withDate = withDate;
-        this.atDate = atDate;
+        this.withDate = withDay;
+        this.atDay = atDay;
     }
 
     @Parameterized.Parameters
@@ -76,12 +76,13 @@ public class CurrDateTest {
 
     @Test
     public void changeDate(){
+
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         LocalDate stopWithDate = LocalDate.of(2002,01,01);
         LocalDate stopAtDate = LocalDate.now();
 
         LocalDate withLocalDate = LocalDate.parse((CharSequence) withDate,dateTimeFormatter);
-        LocalDate atLocalDate = LocalDate.parse((CharSequence) atDate,dateTimeFormatter);
+        LocalDate atLocalDate = LocalDate.parse((CharSequence) atDay,dateTimeFormatter);
 
         //Проверка на диапазон дат (нижняя граница - 01.01.2002, верхняя - текущая дата),
         // если выходит за диапазон, то выставлются эти крайние значения и пишется в лог
@@ -127,6 +128,21 @@ public class CurrDateTest {
 
         WebElement webElemMenuInChose = driver.findElement(By.xpath(elemMenuIn));
         actionsCurrIn.moveToElement(webElemMenuInChose).click().build().perform();
+
+        //Установка дат в календаре не получилась, в данные поля просто копировать - вставить нельзя, даже с просто браузера
+        //похоже это сделано специально, можно только выбрать вручную.
+        //Даты оставляю по-умолчанию.
+
+        //Жму кнопку "Распечатать"
+        WebElement webElementEntBut = driver.findElement(By.cssSelector(".rates-details__link-text"));
+        webElementEntBut.click();
+
+        //Проверяю появление окна распечатывания
+        WebElement webElementPrint = driver.findElement(By.cssSelector(".details-item.print-visible"));
+        Assert.assertTrue(webElementPrint.isEnabled());
+
+
+
 
 
 
